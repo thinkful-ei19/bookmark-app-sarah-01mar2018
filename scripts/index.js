@@ -10,6 +10,9 @@ $(document).ready(function() {
 //  });
 });
 
+//test deleteBookmark
+api.deleteBookmark("cje8wp7id001j0kyagctz2793", () => {console.log('deleted!');});
+
 //test updateBookmark
 // api.updateBookmark("cje8wp7id001j0kyagctz2793", { rating: 4 }, () => {console.log('updated!');});
 
