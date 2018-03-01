@@ -5,10 +5,25 @@ const api = function () {
 
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/sarah';
   
-  const getItems = (callback) => {
-    $.getJSON(`${BASE_URL}/bookmarks`, callback)
+  const getBookmarks = (callback) => {
+    $.getJSON(`${BASE_URL}/bookmarks`, callback);
+  };
+
+  const createBookmark = (title, url, callback) => {
+    let newBookmark = JSON.stringify({
+      title: title,
+      url: url
+    });
+    $.ajax({
+      url: `${BASE_URL}/bookmarks`,
+      method: 'POST',
+      contentType: 'application/json',
+      data: newBookmark,
+      success: callback
+    });
   };
   return {
-    getItems,
+    getBookmarks,
+    createBookmark,
   };
 }();
