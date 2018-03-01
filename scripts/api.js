@@ -22,8 +22,21 @@ const api = function () {
       success: callback
     });
   };
+
+  const updateBookmark = (id, updateData, callback)=> {
+
+    $.ajax({
+      url:`${BASE_URL}/bookmarks/${id}`,
+      method:'PATCH',
+      contentType:'application/json',
+      data:JSON.stringify(updateData),
+      success:callback
+    });
+  };
+
   return {
     getBookmarks,
     createBookmark,
+    updateBookmark,
   };
 }();
