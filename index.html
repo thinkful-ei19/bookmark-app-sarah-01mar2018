@@ -5,7 +5,7 @@
   <title>Bookmarks App</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -56,8 +56,28 @@
       </form>
     </container>
 
-    <div class='js-bookmarks-list bookmarks-list'>
-    </div>
+    <ul class='js-bookmarks-list bookmarks-list'>
+      <li class='bookmark js-bookmark'>
+          <!-- <div class='bookmark-item condensed' data-id=${bookmark.id}> -->
+              <p><h3 class='bookmark-title'>camping in NorCal</h3>
+              <span class='bookmark-rating'>5</span></p>
+              <div class="bookmark-controls">
+                    <button class="bookmark-expand js-bookmark-expand">
+                      <span class="button-label">expand bookmark</span>
+                    </button>
+                    <button class="bookmark-delete js-bookmark-delete">
+                      <span class="button-label">delete</span>
+                    </button>
+              </div>
+              <div class='hidden'>
+              <p class='description'>From Humboldt County to the Salton Sea, California is a state full of beauty. Some areas that often get overshadowed, however, are those in Northern California. Like the rest of the state, these areas contain much divergent splendor—especially that of the outdoors variety.
+
+                  There are many unique and enthralling sights to see in the northern part of the Golden State, and a camping trip in this region is an experience everyone should enjoy at least once. </p>
+              <a class='visit_site_url' href='https://www.active.com/outdoors/articles/8-must-visit-camping-areas-in-northern-california'>visit site!</a>
+            </div>
+              <!-- </div>`
+      </li> -->
+    </ul>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="scripts/api.js"></script>
