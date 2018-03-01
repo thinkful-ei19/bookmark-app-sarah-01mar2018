@@ -1,5 +1,5 @@
 'use strict'; 
-/* global api, $ */
+/*Global api, store, $, bookmarksList*/
 
 // const store = {
 //   bookmarks: [
@@ -73,11 +73,12 @@
 
 $(document).ready(function() {
   bookmarksList.render();
-//  api.getBookmarks((bookmarks) => { 
-//    bookamarks.forEach((bookmark) => {
-//     store.addBookmark(bookmark));
-//     bookmarksList.render();
-//  });
+  api.getBookmarks((bookmarks) => { 
+    bookmarks.forEach((bookmark) => {
+      store.addBookmark(bookmark);
+      bookmarksList.render();
+    });
+  });
 });
 
 //test deleteBookmark
