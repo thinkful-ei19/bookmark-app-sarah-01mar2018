@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+.bookmarks-list-item {
+  color: navy;
+  border: 1px solid black;
+}
+
+/*.hidden {
+  display: none;
+} 
+
+/* .js-add-bookmark-button {
+  display: inline-block;
+} */
+
+/* button:hover {
+cursor: pointer;
+} */
