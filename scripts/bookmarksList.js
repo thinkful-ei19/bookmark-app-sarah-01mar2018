@@ -80,17 +80,17 @@ const bookmarksList = (function(){
 
   //Event Listeners below this line
 
-  function handleBookmarkDelete() {
-    $('.js-bookmarks-list').on('click', '.js-bookmark-delete', event => {
-      console.log('delete ran');
-      event.preventDefault();
-      const id = getIdFromElement(event.currentTarget);
-      api.deleteBookmark(id,() => {
-        store.findAndDelete(id);
-        render();
-      });
-    });
-  }
+  // function handleBookmarkDelete() {
+  //   $('.js-bookmarks-list').on('click', '.js-bookmark-delete', event => {
+  //     console.log('delete ran');
+  //     event.preventDefault();
+  //     const id = getIdFromElement(event.currentTarget);
+  //     api.deleteBookmark(id,() => {
+  //       store.findAndDelete(id);
+  //       render();
+  //     });
+  //   });
+  // }
   
 
   //Listen for ADD Bookmark click and change adding to true
@@ -106,16 +106,16 @@ const bookmarksList = (function(){
   }
 
   //listens for submit for new bookmark
-  function handleAddBookmarkSubmit() {
-    $('.js-add-new-bookmark-form').submit('#new-bookmark-submit', event => {
-      event.preventDefault();
-      //get form values
-      let newBookmark = bookmarkValues();
-      api.createBookmark(newBookmark, response => 
-        store.addBookmark(response));
-      render();
-    });
-  }
+  // function handleAddBookmarkSubmit() {
+  //   $('.js-add-new-bookmark-form').submit('#new-bookmark-submit', event => {
+  //     event.preventDefault();
+  //     //get form values
+  //     let newBookmark = bookmarkValues();
+  //     api.createBookmark(newBookmark, response => 
+  //       store.addBookmark(response));
+  //     render();
+  //   });
+  // }
 
   /*function handleAddBookmarkCancel() {
 
@@ -134,8 +134,8 @@ function handleBookmarkMinRating() {
   function bindEventListeners() {
     //all eventListener functions go here
     handleAddBookmarkClick();
-    handleBookmarkDelete();
-    handleAddBookmarkSubmit();
+    //handleBookmarkDelete();
+    //handleAddBookmarkSubmit();
   }
   //Methods that are exposed
   return {

@@ -73,6 +73,8 @@
 
 $(document).ready(function() {
   bookmarksList.render();
+  bookmarksList.bindEventListeners();
+
   api.getBookmarks((bookmarks) => { 
     bookmarks.forEach((bookmark) => {
       store.addBookmark(bookmark);

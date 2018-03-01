@@ -22,10 +22,10 @@ const store = (function() {
 
   //Let's add a NEW bookmark
   //sets adding to true
-  // const addButtonToggle =function() {
-  //   store.adding = !store.adding;
-  //   // $('.toggle-add').toggleClass('hidden inline-block');
-  // };
+  const addButtonToggle =function() {
+    store.adding = !store.adding;
+    // $('.toggle-add').toggleClass('hidden inline-block');
+  };
 
   //update delete bookmark
   // const findAndDelete = function(id) {
