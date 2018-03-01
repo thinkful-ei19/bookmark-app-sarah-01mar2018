@@ -11,9 +11,9 @@ ul {
   list-style-type: none; 
 }
 
- .hidden {
+ /* .hidden {
   display: none;
-} 
+}  */
 
 /* .js-add-bookmark-button {
   display: inline-block;

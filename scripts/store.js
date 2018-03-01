@@ -44,7 +44,7 @@ const store = (function() {
 
     //findByID,
     addBookmark,
-    //addButtonToggle,
+    addButtonToggle,
     //findAndDelete
     //addNewBookmark
   };

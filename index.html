@@ -32,17 +32,18 @@
     
 
     <container class='for-adding-new-bookmark hidden'>
-     <form action='#' class='toggle-add add-new-bookmark-form js-add-new-bookmark-form hidden'>
+     <form action='#' class='toggle-add add-new-bookmark-form js-new-bookmark-form hidden'>
         <h2>Add a new bookmark</h2>
+        <button type="submit" id='new-bookmark-submit'> Submit</button>        
         <label>Title</label>
         <input type="text" name="title" id="title" placeholder="add title">
         <label>Web Address</label>
-        <input type="text" name="url" id="url" placeholder="Enter web address">
+        <input type="text" name="url" id="url" placeholder="url">
         <label>Description</label>
         <input type="text" name="desc" id="desc" placeholder="Enter a description">
         <div>
-          <form action='' data-id='rating'>
-            <label>Rate site</>
+          <form action='' id='rating'>
+            <label>Rate site</label>
             <input type='radio' name='rating' data-radio-rating=1 value='1'><label for='rating'>1</label>
             <input type='radio' name='rating' data-radio-rating=2 value='2'><label for='rating'>2</label>
             <input type='radio' name='rating' data-radio-rating=3 value='3'><label for='rating'>3</label>
@@ -52,7 +53,7 @@
         </div>
       </div>
 
-        <button type="submit" id='new-bookmark-submit'> Submit</button>
+       
         <!-- <input type="button" name='cancel' value='cancel' onClick='https://thinkful-list-api.herokuapp.com/sarah/bookmarks' /> -->
       </form>
     </container>

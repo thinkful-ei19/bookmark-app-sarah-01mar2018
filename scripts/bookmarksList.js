@@ -1,5 +1,5 @@
 'use strict';
-/* global index store api */
+/* global index, store, api */
 
 const bookmarksList = (function(){
 
@@ -51,7 +51,7 @@ const bookmarksList = (function(){
     // if (store.filterRating !== null) {
     //   bookmarks = store.bookmarks.filter( => {
     //     return bookmarkValues.rating >= store.filterRating;
-      //  });
+    //  });
     //}
     console.log('`render` ran');
     const bookmarksString = generateBookmarkListString(bookmarks);
@@ -94,28 +94,36 @@ const bookmarksList = (function(){
   
 
   //Listen for ADD Bookmark click and change adding to true
-  function handleAddBookmarkClick() {
-    $('#js-add-button-form').on('click', '.js-add-button', event => {
-      $('.for-adding-new-bookmark').show();
-      event.preventDefault();
-      // $('.toggle-add').toggleClass('hidden inline-block');
-      console.log('add bookmark clicked');
-      addButtonToggle();
-      render();
-    });
-  }
-
-  //listens for submit for new bookmark
-  // function handleAddBookmarkSubmit() {
-  //   $('.js-add-new-bookmark-form').submit('#new-bookmark-submit', event => {
+  // function handleAddBookmarkClick() {
+  //   $('#js-add-button-form').on('click', '.js-add-button', event => {
+  //     $('.for-adding-new-bookmark').show();
   //     event.preventDefault();
-  //     //get form values
-  //     let newBookmark = bookmarkValues();
-  //     api.createBookmark(newBookmark, response => 
-  //       store.addBookmark(response));
+  //     // $('.toggle-add').toggleClass('hidden inline-block');
+  //     console.log('add bookmark clicked');
+  //     addButtonToggle();
   //     render();
   //   });
   // }
+
+  //listens for submit for new bookmark
+  function handleAddBookmarkSubmit() {
+    $('.js-new-bookmark-form').on('submit', event => {
+      event.preventDefault();
+      //get form values
+      console.log('submit clicked');
+      // let newBookmark = bookmarkValues();
+      const title = $(event.currentTarget).find('#title').val();
+      const url = $(event.currentTarget).find('#url').val();
+      const desc = $(event.currentTarget).find('#desc').val();
+      const rating = $('input[name=rating]:checked').val();
+      const newBookmark = { title, url, desc, rating };
+      console.log(newBookmark);
+      api.createBookmark(title, url, desc, rating, (response) => {
+        store.addBookmark(response);
+        render();
+      });
+    });
+  }
 
   /*function handleAddBookmarkCancel() {
 
@@ -133,9 +141,9 @@ function handleBookmarkMinRating() {
 
   function bindEventListeners() {
     //all eventListener functions go here
-    handleAddBookmarkClick();
+    // handleAddBookmarkClick();
     //handleBookmarkDelete();
-    //handleAddBookmarkSubmit();
+    handleAddBookmarkSubmit();
   }
   //Methods that are exposed
   return {
