@@ -122,6 +122,10 @@ const bookmarksList = (function(){
         store.addBookmark(response);
         render();
       });
+      $(event.currentTarget).find('#title').val('');
+      $(event.currentTarget).find('#url').val('');
+      $(event.currentTarget).find('#desc').val('');
+      $(event.currentTarget).find('input[name=rating]:checked').prop('checked', false);
     });
   }
 
