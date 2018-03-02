@@ -43,6 +43,11 @@ fieldset {
   min-width: min-content;
 }
 
+header-add-filter {
+  display: flex;
+  flex-direction: column;
+}
+
 /* .min-rating-menu .js-add-button {
   width: 40%;
   display: inline-block;
@@ -57,6 +62,6 @@ fieldset {
   display: inline-block;
 } */
 
-/* button:hover {
+button:hover {
 cursor: pointer;
-} */
+} 

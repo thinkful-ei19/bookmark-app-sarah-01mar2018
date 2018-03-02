@@ -58,7 +58,7 @@ const store = (function() {
   return {
     bookmarks: [],
     adding: false,
-    filterRating: 1,
+    filterRating: 0,
 
     findByID,
     addBookmark,

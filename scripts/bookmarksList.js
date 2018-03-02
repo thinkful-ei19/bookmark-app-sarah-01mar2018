@@ -82,7 +82,8 @@ const bookmarksList = (function(){
       <fieldset class='min-rating-menu'>
         <label class='minimum rating' for="filter-rating">Minimum Rating</label>
         <select name = "minimum rating" id='minimum-rating'>
-          <option value='1' selected>1</option>
+          <option value='0'>0</option>
+          <option value='1'>1</option>
           <option value='2'>2</option>
           <option value='3'>3</option>
           <option value='4'>4</option>
@@ -135,16 +136,6 @@ const bookmarksList = (function(){
     $('.js-header-add-filter').html(header);
     $('.js-bookmarks-list').html(bookmarksString);
   }
-  
-  // //form values to use in other functions
-  // const bookmarkVals = function() {
-  //   return {
-  //     title: $('#title').val(),
-  //     url: $('#url').val(),
-  //     desc: $('#desc').val(),
-  //     rating: $(parseInt($('#rating')))
-  //   };
-  // };
 
   //gets the bookmark id for the bookmark clicked on
   function getIdFromElement(bookmark) {
@@ -165,7 +156,6 @@ const bookmarksList = (function(){
       store.findAndUpdate(id, {expanded: !bookmark.expanded});
       render();
     });
-  //   });
   }
 
   function handleBookmarkDelete() {
