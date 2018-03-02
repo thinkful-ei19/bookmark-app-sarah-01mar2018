@@ -7,14 +7,36 @@ const bookmarksList = (function(){
 
   function generateBookmarkElement(bookmark) {
   //HTML goes here
-    
-    let expandedClass = `<div class='expanded'>`;
-
     if (!bookmark.expanded) {
-      let expandedClass = `<div class='expanded hidden'>`;
-    }
-    
-    return `
+      return `
+      <li class='bookmark js-bookmark'>
+      <div class='bookmark-item condensed' data-id=${bookmark.id}>
+          <p><h3 class='bookmark-title'>${bookmark.title}</h3>
+          <span class='bookmark-rating'>Rating: ${bookmark.rating}</span></p>
+          <div class="bookmark-controls">
+                <button class="bookmark-expand js-bookmark-expand">
+                  <span class="button-label">expand bookmark</span>
+                </button>
+                <button class="bookmark-delete js-bookmark-delete">
+                  <span class="button-label">delete</span>
+                </button>
+          </div>
+      </div>
+      <div class='expanded hidden'>
+        <p class='desc'>${bookmark.desc}</p>
+        <form action=${bookmark.url}>
+         <input type="submit" value='visit site' />
+        </form>
+      </div>
+  </li>`;
+    } else {
+    // let expandedClass = `<div class='expanded hidden'>`;
+
+    // if (bookmark.expanded) {
+    //   let expandedClass = `<div class='expanded'>`;
+    // }
+    // console.log(expandedClass);
+      return `
     <li class='bookmark js-bookmark'>
     <div class='bookmark-item condensed' data-id=${bookmark.id}>
         <p><h3 class='bookmark-title'>${bookmark.title}</h3>
@@ -28,13 +50,14 @@ const bookmarksList = (function(){
               </button>
         </div>
     </div>
-    ${expandedClass}
+    <div class='expanded'>
       <p class='desc'>${bookmark.desc}</p>
       <form action=${bookmark.url}>
        <input type="submit" value='visit site' />
       </form>
     </div>
 </li>`;
+    }
   }
   
     
@@ -46,7 +69,7 @@ const bookmarksList = (function(){
   function generateBookmarkListString(bookmarksList) {
     const bookmarks = bookmarksList.map((bookmark) => generateBookmarkElement(bookmark));
     return bookmarks.join('');
-    console.log('generate string ran');
+    console.log(bookmarks);
   }
 
   // //This is what will be rendered to the DOM
@@ -59,6 +82,7 @@ const bookmarksList = (function(){
     //  });
     //}
 
+    // if ()
     
     console.log('`render` ran');
     const bookmarksString = generateBookmarkListString(bookmarks);
@@ -92,11 +116,11 @@ const bookmarksList = (function(){
       console.log('expand clicked');
       const id = getIdFromElement(event.currentTarget);
       const bookmark = store.findByID(id);
-      api.updateBookmark(id, {expanded: !bookmark.expanded}, () => {
-        store.findAndUpdate(id, {expanded: !bookmark.expanded});
-        render();
-      });
+      // api.updateBookmark(id, {expanded: !bookmark.expanded}, () => {
+      store.findAndUpdate(id, {expanded: !bookmark.expanded});
+      render();
     });
+  //   });
   }
 
   function handleBookmarkDelete() {
@@ -116,7 +140,7 @@ const bookmarksList = (function(){
   //Listen for ADD Bookmark click and change adding to true
   function handleAddBookmarkClick() {
     $('.js-add-button').click( event => {
-     store.toggleAdding();
+      store.toggleAdding();
       console.log('add bookmark clicked');
       render();
     });
@@ -169,7 +193,7 @@ function handleBookmarkMinRating() {
 
   function bindEventListeners() {
     //all eventListener functions go here
-    handleAddBookmarkClick()
+    handleAddBookmarkClick();
     handleBookmarkDelete();
     handleAddBookmarkSubmit();
     handleToggleFilter();

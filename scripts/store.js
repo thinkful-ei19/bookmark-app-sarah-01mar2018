@@ -10,6 +10,7 @@ const store = (function() {
 
   //add bookmarks to the store
   const addBookmark = function(bookmark) {
+    bookmark.expanded = false;
     console.log('addBookmark ran');
     this.bookmarks.unshift(bookmark);
   };
@@ -59,7 +60,6 @@ const store = (function() {
   return {
     bookmarks: [],
     adding: false,
-    // expanded: false,
     filterRating: 1,
 
     findByID,
