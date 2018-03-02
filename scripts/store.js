@@ -1,11 +1,11 @@
 'use strict'; 
 const store = (function() {
   //bookmarks: [
-    // {  id: "cjcuzl21l00290k05253okaoh",
-    // title: "Woolworths to stop selling pesticide linked to global bee decline",
-    // url: "https://www.theguardian.com/environment/2018/jan/23/woolworths-to-stop-selling-pesticide-linked-to-global-bee-decline",
-    // desc: "Australian grocery giant will join Bunnings to withdraw Yates Confidor from sale",
-    // rating: 4}
+  // {  id: "cjcuzl21l00290k05253okaoh",
+  // title: "Woolworths to stop selling pesticide linked to global bee decline",
+  // url: "https://www.theguardian.com/environment/2018/jan/23/woolworths-to-stop-selling-pesticide-linked-to-global-bee-decline",
+  // desc: "Australian grocery giant will join Bunnings to withdraw Yates Confidor from sale",
+  // rating: 4}
   //]}
 
   //add bookmarks to the store
@@ -36,16 +36,23 @@ const store = (function() {
     }); 
   };
 
+  const toggleExpanded = function() {
+    this.expanded=!this.expanded;
+    //let bookmark = this.findByID(id);
+    console.log(bookmark);
+  };
+
   return {
     bookmarks: [],
     adding: false,
-    expanded: false,
+    // expanded: false,
     filterRating: 1,
 
-    //findByID,
+    findByID,
     addBookmark,
     addButtonToggle,
-    findAndDelete
+    findAndDelete,
+    toggleExpanded
     //addNewBookmark
   };
 

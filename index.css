@@ -36,6 +36,7 @@ section {
   text-align: center;
   background: rgb(216, 210, 210);
   border-radius: 5%;
+  width: 100%;
 }
 
 /* .min-rating-menu .js-add-button {

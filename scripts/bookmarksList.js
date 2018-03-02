@@ -7,12 +7,14 @@ const bookmarksList = (function(){
 
   function generateBookmarkElement(bookmark) {
   //HTML goes here
+    // if(!bookmark.expanded) {
 
+    // }
     return `
     <li class='bookmark js-bookmark'>
     <div class='bookmark-item condensed' data-id=${bookmark.id}>
         <p><h3 class='bookmark-title'>${bookmark.title}</h3>
-        <span class='bookmark-rating'>${bookmark.rating}</span></p>
+        <span class='bookmark-rating'>Rating: ${bookmark.rating}</span></p>
         <div class="bookmark-controls">
               <button class="bookmark-expand js-bookmark-expand">
                 <span class="button-label">expand bookmark</span>
@@ -22,7 +24,7 @@ const bookmarksList = (function(){
               </button>
         </div>
     </div>
-    <div class='hidden'>
+    <div class='expanded hidden'>
       <p class='desc'>${bookmark.desc}</p>
       <form action=${bookmark.url}>
        <input type="submit" value='visit site' />
@@ -32,8 +34,6 @@ const bookmarksList = (function(){
 `;
   }
     
-
-  // const expandedHTML
 
   // const ratingHTML
   
@@ -48,11 +48,14 @@ const bookmarksList = (function(){
   // //This is what will be rendered to the DOM
   function render() {
     let bookmarks = store.bookmarks;
+
     // if (store.filterRating !== null) {
     //   bookmarks = store.bookmarks.filter( => {
     //     return bookmarkValues.rating >= store.filterRating;
     //  });
     //}
+
+    
     console.log('`render` ran');
     const bookmarksString = generateBookmarkListString(bookmarks);
    
@@ -61,7 +64,7 @@ const bookmarksList = (function(){
   }
   
   //form values to use in other functions
-  const bookmarkValues = function() {
+  const bookmarkVals = function() {
     return {
       title: $('#title').val(),
       url: $('#url').val(),
@@ -112,7 +115,7 @@ const bookmarksList = (function(){
       event.preventDefault();
       //get form values
       console.log('submit clicked');
-      // let newBookmark = bookmarkValues();
+      // let newBookmark = bookmarkVals();
       const title = $(event.currentTarget).find('#title').val();
       const url = $(event.currentTarget).find('#url').val();
       const desc = $(event.currentTarget).find('#desc').val();
@@ -128,6 +131,13 @@ const bookmarksList = (function(){
       $(event.currentTarget).find('#desc').val('');
       $(event.currentTarget).find('input[name=rating]:checked').prop('checked', false);
     });
+  }
+
+  function handleToggleExpand() {
+    $('whatever button').click(() => {
+      store.toggleExpanded();
+      render()
+    }
   }
 
   /*function handleAddBookmarkCancel() {
