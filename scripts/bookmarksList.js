@@ -69,7 +69,6 @@ const bookmarksList = (function(){
   function generateBookmarkListString(bookmarksList) {
     const bookmarks = bookmarksList.map((bookmark) => generateBookmarkElement(bookmark));
     return bookmarks.join('');
-    console.log(bookmarks);
   }
 
   //generate default header HTML
@@ -90,8 +89,8 @@ const bookmarksList = (function(){
           <option value='5'>5</option>
         </select>
       </div>
-    `
-  }
+    `;
+  };
 
   const generateAddBookmarkHeader = function() {
     return `
@@ -116,8 +115,8 @@ const bookmarksList = (function(){
        
         <!-- <input type="button" name='cancel' value='cancel' onClick='https://thinkful-list-api.herokuapp.com/sarah/bookmarks' /> -->
       </form>
-    `
-  }
+    `;
+  };
 
   // //This is what will be rendered to the DOM
   function render() {
@@ -140,7 +139,7 @@ const bookmarksList = (function(){
     // inserts HTML into the DOM
     $('.js-header-add-filter').html(header);
     $('.js-bookmarks-list').html(bookmarksString);
-}
+  }
   
   // //form values to use in other functions
   // const bookmarkVals = function() {
@@ -190,11 +189,11 @@ const bookmarksList = (function(){
 
   //Listen for ADD Bookmark click and change adding to true
   function handleAddBookmarkClick() {
-    $('.js-add-button').click( event => {
-      store.toggleAdding();
+    $('.js-header-add-filter').on('click', '.js-add-button', ((event) => {
       console.log('add bookmark clicked');
+      store.toggleAdding();
       render();
-    });
+    }));
   }
 
   //listens for submit for new bookmark
