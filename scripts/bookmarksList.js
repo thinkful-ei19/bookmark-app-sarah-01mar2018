@@ -1,5 +1,5 @@
 'use strict';
-/* global index, store, api */
+/* global store, $, api */
 
 const bookmarksList = (function(){
 
@@ -74,7 +74,7 @@ const bookmarksList = (function(){
   function getIdFromElement(bookmark) {
     return $(bookmark)
       .closest('.bookmark-item')
-      .data('data-id');
+      .data('id');
   }
 
 
@@ -85,6 +85,7 @@ const bookmarksList = (function(){
       console.log('delete ran');
       event.preventDefault();
       const id = getIdFromElement(event.currentTarget);
+      console.log(id);
       api.deleteBookmark(id,() => {
         store.findAndDelete(id);
         render();
