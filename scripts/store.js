@@ -15,10 +15,10 @@ const store = (function() {
   };
 
   //find a bookmark by its id
-  // const findByID = function(id) {
-  //   console.log('findByID ran');
-  //   return store.bookmarks.find(bookmark => bookmark.id === id);
-  // };
+  const findByID = function(id) {
+    console.log('findByID ran');
+    return store.bookmarks.find(bookmark => bookmark.id === id);
+  };
 
   //Let's add a NEW bookmark
   //sets adding to true
@@ -28,13 +28,13 @@ const store = (function() {
   };
 
   //update delete bookmark
-  // const findAndDelete = function(id) {
-  //   //this.bookmarks.splice(this.boomarks.findIndex(bookmark => bookmark.id === id), 1);
-  //   let bookmark = findByID(id);
-  //   store.bookmarks = store.bookmarks.filter((storeBookmark) => {
-  //     return storeBookmark.id !== bookmark.id;
-  //   }); 
-  // };
+  const findAndDelete = function(id) {
+    //this.bookmarks.splice(this.boomarks.findIndex(bookmark => bookmark.id === id), 1);
+    let bookmark = findByID(id);
+    store.bookmarks = store.bookmarks.filter((storeBookmark) => {
+      return storeBookmark.id !== bookmark.id;
+    }); 
+  };
 
   return {
     bookmarks: [],
@@ -45,7 +45,7 @@ const store = (function() {
     //findByID,
     addBookmark,
     addButtonToggle,
-    //findAndDelete
+    findAndDelete
     //addNewBookmark
   };
 
