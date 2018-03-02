@@ -9,7 +9,40 @@
 
 ul {
   list-style-type: none; 
+  text-align: center;
 }
+
+li {
+  border: 5px solid blue;
+  padding: 20px;
+  background-color: rgb(244, 249, 102);
+  /* display: inline-block; */
+  width: 90%;
+  margin: 20px;
+  border-radius: 10% 40%;
+}
+
+h1 {
+  text-align: center;
+  background: blue;
+  color:  rgb(244, 249, 102);
+  padding: 10px;
+}
+
+section {
+  border: 5px solid blue;
+  display: inline-block;
+  padding: 15px;
+  text-align: center;
+  background: rgb(216, 210, 210);
+  border-radius: 5%;
+}
+
+/* .min-rating-menu .js-add-button {
+  width: 40%;
+  display: inline-block;
+  
+} */
 
  /* .hidden {
   display: none;

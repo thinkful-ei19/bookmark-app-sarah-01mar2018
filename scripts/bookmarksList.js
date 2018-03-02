@@ -80,17 +80,17 @@ const bookmarksList = (function(){
 
   //Event Listeners below this line
 
-  // function handleBookmarkDelete() {
-  //   $('.js-bookmarks-list').on('click', '.js-bookmark-delete', event => {
-  //     console.log('delete ran');
-  //     event.preventDefault();
-  //     const id = getIdFromElement(event.currentTarget);
-  //     api.deleteBookmark(id,() => {
-  //       store.findAndDelete(id);
-  //       render();
-  //     });
-  //   });
-  // }
+  function handleBookmarkDelete() {
+    $('.js-bookmarks-list').on('click', '.js-bookmark-delete', event => {
+      console.log('delete ran');
+      event.preventDefault();
+      const id = getIdFromElement(event.currentTarget);
+      api.deleteBookmark(id,() => {
+        store.findAndDelete(id);
+        render();
+      });
+    });
+  }
   
 
   //Listen for ADD Bookmark click and change adding to true
@@ -146,7 +146,7 @@ function handleBookmarkMinRating() {
   function bindEventListeners() {
     //all eventListener functions go here
     // handleAddBookmarkClick();
-    //handleBookmarkDelete();
+    handleBookmarkDelete();
     handleAddBookmarkSubmit();
   }
   //Methods that are exposed
