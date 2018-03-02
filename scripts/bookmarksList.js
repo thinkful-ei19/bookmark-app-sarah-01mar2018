@@ -94,7 +94,7 @@ const bookmarksList = (function(){
 
   const generateAddBookmarkHeader = function() {
     return `
-    <form action='#' class='toggle-add add-new-bookmark-form js-new-bookmark-form hidden'>
+    <form action='#' class='toggle-add add-new-bookmark-form js-new-bookmark-form'>
         <h2>Add a new bookmark</h2>
         <button type="submit" id='new-bookmark-submit'> Submit</button>        
         <label>Title</label>
