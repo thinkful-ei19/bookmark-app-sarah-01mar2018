@@ -26,13 +26,13 @@ h1 {
   text-align: center;
   background: blue;
   color:  rgb(244, 249, 102);
-  padding: 10px;
+  padding: 20px;
 }
 
 section {
   border: 5px solid blue;
   display: inline-block;
-  padding: 15px;
+  padding: 20px;
   text-align: center;
   background: rgb(216, 210, 210);
   border-radius: 5%;
