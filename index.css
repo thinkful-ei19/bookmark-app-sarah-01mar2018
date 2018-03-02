@@ -39,6 +39,10 @@ section {
   width: 100%;
 }
 
+fieldset {
+  min-width: min-content;
+}
+
 /* .min-rating-menu .js-add-button {
   width: 40%;
   display: inline-block;

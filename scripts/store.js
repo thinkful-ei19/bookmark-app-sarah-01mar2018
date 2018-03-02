@@ -51,10 +51,8 @@ const store = (function() {
     this.adding = ! this.adding;
   };
 
-  const toggleFilter = function() {
-    this.filterRating=!this.filterRating;
-    //let bookmark = this.findByID(id);
-    console.log(bookmark);
+  const toggleRatingFilter = function(rating) {
+    this.filterRating = parseInt(rating);
   };
 
   return {
@@ -68,7 +66,7 @@ const store = (function() {
     findAndDelete,
     findAndUpdate,
     toggleAdding,
-    //addNewBookmark
+    toggleRatingFilter,
   };
 
 })();

@@ -24,9 +24,9 @@ const bookmarksList = (function(){
       </div>
       <div class='expanded hidden'>
         <p class='desc'>${bookmark.desc}</p>
-        <form action=${bookmark.url}>
+        <a href=${bookmark.url} target='_blank'>
          <input type="submit" value='visit site' />
-        </form>
+        </a>
       </div>
   </li>`;
     } else {
@@ -52,9 +52,9 @@ const bookmarksList = (function(){
     </div>
     <div class='expanded'>
       <p class='desc'>${bookmark.desc}</p>
-      <form action=${bookmark.url}>
-       <input type="submit" value='visit site' />
-      </form>
+      <a href=${bookmark.url} target='_blank'>
+         <input type="submit" value='visit site' />
+        </a>
     </div>
 </li>`;
     }
@@ -79,8 +79,8 @@ const bookmarksList = (function(){
           <button class='js-add-button'>Add bookmark</button>
         <!-- </form> -->
       </div>
-      <div class='min-rating-menu'>
-        <label class='minimum rating' for="filter-rating">Minimun Rating</label>
+      <fieldset class='min-rating-menu'>
+        <label class='minimum rating' for="filter-rating">Minimum Rating</label>
         <select name = "minimum rating" id='minimum-rating'>
           <option value='1' selected>1</option>
           <option value='2'>2</option>
@@ -88,15 +88,15 @@ const bookmarksList = (function(){
           <option value='4'>4</option>
           <option value='5'>5</option>
         </select>
-      </div>
+      </fieldset>
     `;
   };
 
-  const generateAddBookmarkHeader = function() {
+  const generateAddingBookmarkHeader = function() {
     return `
     <form action='#' class='toggle-add add-new-bookmark-form js-new-bookmark-form'>
         <h2>Add a new bookmark</h2>
-        <button type="submit" id='new-bookmark-submit'> Submit</button>        
+        
         <label>Title</label>
         <input type="text" name="title" id="title" placeholder="add title">
         <label>Web Address</label>
@@ -111,27 +111,22 @@ const bookmarksList = (function(){
             <input type='radio' name='rating' data-radio-rating=4 value='4'><label for='rating'>4</label>
             <input type='radio' name='rating' data-radio-rating=5 value='5'><label for='rating'>5</label>
         </div>
-
-       
+        <button type="submit" id='new-bookmark-submit'> Submit</button>
         <!-- <input type="button" name='cancel' value='cancel' onClick='https://thinkful-list-api.herokuapp.com/sarah/bookmarks' /> -->
       </form>
     `;
   };
 
+  
   // //This is what will be rendered to the DOM
   function render() {
-    let bookmarks = store.bookmarks;
+    let bookmarks = store.bookmarks
+      .filter(bookmark => {
+        console.log(bookmark.rating, store.filterRating);
+        return bookmark.rating >= store.filterRating;
+      });
 
-    let header = (store.adding) ? generateAddBookmarkHeader() : generateDefaultHeader();
-    //let currentStore = (store.ratingFilter === 'all') ? store.bookmarks : store.bookmarks.filter(obj => obj.rating >= store.ratingFilter);
-    
-    // if (store.filterRating !== null) {
-    //   bookmarks = store.bookmarks.filter( => {
-    //     return bookmarkValues.rating >= store.filterRating;
-    //  });
-    //}
-
-    // if ()
+    const header = (store.adding) ? generateAddingBookmarkHeader() : generateDefaultHeader();
     
     console.log('`render` ran');
     const bookmarksString = generateBookmarkListString(bookmarks);
@@ -198,7 +193,7 @@ const bookmarksList = (function(){
 
   //listens for submit for new bookmark
   function handleAddBookmarkSubmit() {
-    $('.js-new-bookmark-form').on('submit', event => {
+    $('.js-header-add-filter').on('submit', '.js-new-bookmark-form', event => {
       event.preventDefault();
       //get form values
       console.log('submit clicked');
@@ -211,6 +206,7 @@ const bookmarksList = (function(){
       console.log(newBookmark);
       api.createBookmark(title, url, desc, rating, (response) => {
         store.addBookmark(response);
+        store.toggleAdding();
         render();
       });
       $(event.currentTarget).find('#title').val('');
@@ -220,21 +216,21 @@ const bookmarksList = (function(){
     });
   }
 
-  function handleToggleFilter() {
-    $('whatever button').click(() => {
-      store.toggleExpanded();
+
+
+  // function handleAddBookmarkCancel() {
+
+  // }
+
+
+  function handleBookmarkMinRating() {
+    $('.js-header-add-filter').on('change', '#minimum-rating', function(){
+      console.log('rating changed');
+      const rating = $('#minimum-rating').val();
+      store.toggleRatingFilter(rating);
       render();
     });
   }
-
-  /*function handleAddBookmarkCancel() {
-
-  }
-
-
-function handleBookmarkMinRating() {
-
-}*/
 
 
   function bindEventListeners() {
@@ -242,8 +238,8 @@ function handleBookmarkMinRating() {
     handleAddBookmarkClick();
     handleBookmarkDelete();
     handleAddBookmarkSubmit();
-    handleToggleFilter();
     handleBookmarkExpand();
+    handleBookmarkMinRating();
   }
   //Methods that are exposed
   return {
