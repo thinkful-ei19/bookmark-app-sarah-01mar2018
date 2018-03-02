@@ -83,6 +83,18 @@ const bookmarksList = (function(){
 
   //Event Listeners below this line
 
+  function handleBookmarkExpand() {
+    $('.js-bookmarks-list').on('click', '.js-bookmark-expand', event => {
+      console.log('expand clicked')
+      const id = getIdFromElement(event.currentTarget);
+      const bookmark = store.findByID(id);
+      api.updateBookmark(id, {expanded: !bookmark.expanded}, () => {
+        store.findAndUpdate(id, {expanded: !bookmark.expanded});
+        render();
+      })
+    })
+  }
+
   function handleBookmarkDelete() {
     $('.js-bookmarks-list').on('click', '.js-bookmark-delete', event => {
       console.log('delete ran');
@@ -133,11 +145,11 @@ const bookmarksList = (function(){
     });
   }
 
-  function handleToggleExpand() {
+  function handleToggleFilter() {
     $('whatever button').click(() => {
       store.toggleExpanded();
-      render()
-    }
+      render();
+    });
   }
 
   /*function handleAddBookmarkCancel() {
@@ -159,6 +171,8 @@ function handleBookmarkMinRating() {
     // handleAddBookmarkClick();
     handleBookmarkDelete();
     handleAddBookmarkSubmit();
+    handleToggleFilter();
+    handleBookmarkExpand();
   }
   //Methods that are exposed
   return {

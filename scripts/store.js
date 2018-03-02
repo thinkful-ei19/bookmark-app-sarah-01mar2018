@@ -36,7 +36,16 @@ const store = (function() {
     }); 
   };
 
-  const toggleExpanded = function() {
+  //function to find and update <li> bookmarks by id
+  const findAndUpdate = function(id, newData) {
+    let bookmark = this.bookmarks.find(bookmark => bookmark.id === id);
+    console.log(bookmark);
+    Object.assign(bookmark, newData);
+    console.log(bookmark);
+    console.log(store.bookmarks);
+  }
+
+  const toggleFilter = function() {
     this.expanded=!this.expanded;
     //let bookmark = this.findByID(id);
     console.log(bookmark);
@@ -52,7 +61,7 @@ const store = (function() {
     addBookmark,
     addButtonToggle,
     findAndDelete,
-    toggleExpanded
+    findAndUpdate
     //addNewBookmark
   };
 
