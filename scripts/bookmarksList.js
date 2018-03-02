@@ -114,16 +114,13 @@ const bookmarksList = (function(){
   
 
   //Listen for ADD Bookmark click and change adding to true
-  // function handleAddBookmarkClick() {
-  //   $('#js-add-button-form').on('click', '.js-add-button', event => {
-  //     $('.for-adding-new-bookmark').show();
-  //     event.preventDefault();
-  //     // $('.toggle-add').toggleClass('hidden inline-block');
-  //     console.log('add bookmark clicked');
-  //     addButtonToggle();
-  //     render();
-  //   });
-  // }
+  function handleAddBookmarkClick() {
+    $('.js-add-button').click( event => {
+     store.toggleAdding();
+      console.log('add bookmark clicked');
+      render();
+    });
+  }
 
   //listens for submit for new bookmark
   function handleAddBookmarkSubmit() {
@@ -172,7 +169,7 @@ function handleBookmarkMinRating() {
 
   function bindEventListeners() {
     //all eventListener functions go here
-    // handleAddBookmarkClick();
+    handleAddBookmarkClick()
     handleBookmarkDelete();
     handleAddBookmarkSubmit();
     handleToggleFilter();

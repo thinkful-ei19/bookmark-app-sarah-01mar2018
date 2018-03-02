@@ -66,7 +66,7 @@ const store = (function() {
     addBookmark,
     addButtonToggle,
     findAndDelete,
-    findAndUpdate
+    findAndUpdate,
     toggleAdding,
     //addNewBookmark
   };
