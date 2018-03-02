@@ -43,10 +43,15 @@ const store = (function() {
     Object.assign(bookmark, newData);
     console.log(bookmark);
     console.log(store.bookmarks);
-  }
+  };
+
+  //function to toggle adding property in store
+  const toggleAdding = function() {
+    this.adding = ! this.adding;
+  };
 
   const toggleFilter = function() {
-    this.expanded=!this.expanded;
+    this.filterRating=!this.filterRating;
     //let bookmark = this.findByID(id);
     console.log(bookmark);
   };
@@ -62,6 +67,7 @@ const store = (function() {
     addButtonToggle,
     findAndDelete,
     findAndUpdate
+    toggleAdding,
     //addNewBookmark
   };
 
