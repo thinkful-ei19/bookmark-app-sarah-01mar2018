@@ -7,9 +7,13 @@ const bookmarksList = (function(){
 
   function generateBookmarkElement(bookmark) {
   //HTML goes here
-    // if(!bookmark.expanded) {
+    
+    let expandedClass = `<div class='expanded'>`;
 
-    // }
+    if (!bookmark.expanded) {
+      let expandedClass = `<div class='expanded hidden'>`;
+    }
+    
     return `
     <li class='bookmark js-bookmark'>
     <div class='bookmark-item condensed' data-id=${bookmark.id}>
@@ -24,15 +28,15 @@ const bookmarksList = (function(){
               </button>
         </div>
     </div>
-    <div class='expanded hidden'>
+    ${expandedClass}
       <p class='desc'>${bookmark.desc}</p>
       <form action=${bookmark.url}>
        <input type="submit" value='visit site' />
       </form>
     </div>
-</li>
-`;
+</li>`;
   }
+  
     
 
   // const ratingHTML
@@ -85,14 +89,14 @@ const bookmarksList = (function(){
 
   function handleBookmarkExpand() {
     $('.js-bookmarks-list').on('click', '.js-bookmark-expand', event => {
-      console.log('expand clicked')
+      console.log('expand clicked');
       const id = getIdFromElement(event.currentTarget);
       const bookmark = store.findByID(id);
       api.updateBookmark(id, {expanded: !bookmark.expanded}, () => {
         store.findAndUpdate(id, {expanded: !bookmark.expanded});
         render();
-      })
-    })
+      });
+    });
   }
 
   function handleBookmarkDelete() {
